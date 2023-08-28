@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         /* Custom CSS for Post Feed */
+        body {
+            background-color: #ccc;
+        }
+
         .card {
             border: none;
             margin-bottom: 20px;
@@ -47,64 +52,90 @@
 
         /* Custom CSS for comments */
         .comments-section {
-            background-color: #f0f0f0; /* Adjust this color as needed */
+            background-color: #f0f0f0;
+            /* Adjust this color as needed */
             padding: 10px;
             border-top: 1px solid #ccc;
         }
     </style>
     <title>Post Feed</title>
 </head>
-<body>
 
-<div class="container mt-5">
-    <div class="row">
-        <!-- Photo Post Card -->
-        <div class="col-md-12 mb-4">
-            <div class="card">
-                <img src="../webapp/img/b4.jpg" class="card-img-top" alt="Photo">
-                <div class="card-body">
-                    <h5 class="card-title">Photo Post</h5>
-                    <p class="card-text">This is a beautiful photo I took on vacation. #nature #vacation</p>
-                </div>
-                <ul class="list-group list-group-flush comments-section">
-                    <li class="list-group-item">John Doe: Awesome shot! </li>
-                    <li class="list-group-item">Jane Smith: I wish I was there.</li>
-                </ul>
-                <div class="card-body comments-section">
-                    <a href="#" class="card-link"><i class="far fa-thumbs-up"></i> Like</a><span class="badge badge-light">2</span>
-                    <a href="#" class="card-link"><i class="far fa-comment"></i> Comment</a> <span class="badge badge-light">1</span>
-                </div>
-               
+<body>
+    <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+        <!-- Navbar content -->
+        <a class="navbar-brand" href="#">e-Vote</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" href="profile.html">Profile</a>
+                <a class="nav-item nav-link" href="feed.html">Feed</a>
+                <a class="nav-item nav-link" href="VIewBallots.html">ViewBallots</a>
+                <a class="nav-item nav-link" href="ViewResults.html">Results</a>
+                <a class="nav-item nav-link disabled" href="login.html" tabindex="-1" aria-disabled="true">log-out</a>
             </div>
         </div>
 
-        <!-- Text Post Card -->
-        <div class="col-md-12 mb-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Text Post</h5>
-                    <p class="card-text">Just finished reading a great book! Highly recommend "The Adventure Begins."</p>
+    </nav>
+    <div class="container mt-5">
+        <div class="row">
+            <!-- Photo Post Card -->
+            <div class="col-md-8 mb-4">
+                <div class="card">
+                    <img src="../webapp/img/b4.jpg" class="card-img-top" alt="Photo">
+                    <div class="card-body">
+                        <h5 class="card-title">Photo Post</h5>
+                        <p class="card-text">Dont forget we having SRC elections soon 13 October 2023.Choose wisely
+                            #Brics #vacation</p>
+                    </div>
+                    <ul class="list-group list-group-flush comments-section">
+                        <li class="list-group-item">John Doe: Awesome shot! </li>
+                        <li class="list-group-item">Jane Smith: I wish I was there.</li>
+                    </ul>
+                    <div class="card-body comments-section">
+                        <a href="#" class="card-link"><i class="far fa-thumbs-up"></i> Like</a><span
+                            class="badge badge-light">2</span>
+                        <a href="#" class="card-link"><i class="far fa-comment"></i> Comment</a> <span
+                            class="badge badge-light">1</span>
+                    </div>
+
                 </div>
-                <ul class="list-group list-group-flush comments-section">
-                    <li class="list-group-item">Sara Johnson: I've read it too, and it's amazing!</li>
-                    <li class="list-group-item">Mike Brown: Thanks for the recommendation. </li>
-                </ul>
-                <div class="card-body comments-section">
-                    <a href="#" class="card-link"><i class="far fa-thumbs-up"></i> Like</a><span class="badge badge-light">1</span>
-                    <a href="#" class="card-link"><i class="far fa-comment"></i> Comment</a> <span class="badge badge-light">3</span>
+            </div>
+
+            <!-- Text Post Card -->
+            <div class="col-md-8 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Text Post</h5>
+                        <p class="card-text">We are count 5 days till we have our seminar Blockchain</p>
+                    </div>
+                    <ul class="list-group list-group-flush comments-section">
+                        <li class="list-group-item">Sara Johnson: I Cant wait!</li>
+                        <li class="list-group-item">Mike Brown: Thanks for the recommendation. </li>
+                    </ul>
+                    <div class="card-body comments-section">
+                        <a href="#" class="card-link"><i class="far fa-thumbs-up"></i> Like</a><span
+                            class="badge badge-light">1</span>
+                        <a href="#" class="card-link"><i class="far fa-comment"></i> Comment</a> <span
+                            class="badge badge-light">3</span>
+                    </div>
+                    <!-- Comments Section -->
+
                 </div>
-                <!-- Comments Section -->
-                
             </div>
         </div>
     </div>
-</div>
 
-<!-- Bootstrap and Font Awesome Scripts -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <!-- Bootstrap and Font Awesome Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
 </body>
+
 </html>
