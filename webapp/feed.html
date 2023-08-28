@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom CSS for Post Feed */
+        .card {
+            border: none;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .card-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .card-text {
+            margin-bottom: 15px;
+        }
+
+        .list-group-item {
+            background-color: transparent;
+            border: none;
+        }
+
+        .list-group-item:hover {
+            background-color: #f8f9fa;
+        }
+
+        .badge {
+            background-color: #007bff;
+            font-size: 12px;
+            margin-left: 5px;
+        }
+
+        .card-link {
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        .card-link:hover {
+            text-decoration: none;
+        }
+
+        /* Custom CSS for comments */
+        .comments-section {
+            background-color: #f0f0f0; /* Adjust this color as needed */
+            padding: 10px;
+            border-top: 1px solid #ccc;
+        }
+    </style>
+    <title>Post Feed</title>
+</head>
+<body>
+
+<div class="container mt-5">
+    <div class="row">
+        <!-- Photo Post Card -->
+        <div class="col-md-12 mb-4">
+            <div class="card">
+                <img src="../webapp/img/b4.jpg" class="card-img-top" alt="Photo">
+                <div class="card-body">
+                    <h5 class="card-title">Photo Post</h5>
+                    <p class="card-text">This is a beautiful photo I took on vacation. #nature #vacation</p>
+                </div>
+                <ul class="list-group list-group-flush comments-section">
+                    <li class="list-group-item">John Doe: Awesome shot! </li>
+                    <li class="list-group-item">Jane Smith: I wish I was there.</li>
+                </ul>
+                <div class="card-body comments-section">
+                    <a href="#" class="card-link"><i class="far fa-thumbs-up"></i> Like</a><span class="badge badge-light">2</span>
+                    <a href="#" class="card-link"><i class="far fa-comment"></i> Comment</a> <span class="badge badge-light">1</span>
+                </div>
+               
+            </div>
+        </div>
+
+        <!-- Text Post Card -->
+        <div class="col-md-12 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Text Post</h5>
+                    <p class="card-text">Just finished reading a great book! Highly recommend "The Adventure Begins."</p>
+                </div>
+                <ul class="list-group list-group-flush comments-section">
+                    <li class="list-group-item">Sara Johnson: I've read it too, and it's amazing!</li>
+                    <li class="list-group-item">Mike Brown: Thanks for the recommendation. </li>
+                </ul>
+                <div class="card-body comments-section">
+                    <a href="#" class="card-link"><i class="far fa-thumbs-up"></i> Like</a><span class="badge badge-light">1</span>
+                    <a href="#" class="card-link"><i class="far fa-comment"></i> Comment</a> <span class="badge badge-light">3</span>
+                </div>
+                <!-- Comments Section -->
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap and Font Awesome Scripts -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+</body>
+</html>
