@@ -7,7 +7,7 @@
 
         /* Apply styles to the hero section */
         .hero {
-            background-image: url('../webapp/img/hero2.jpg');
+            background-image: url('../img/hero2.jpg');
             background-size: cover;
             height: 100vh; /* Adjust to make the hero section cover the entire viewport */
             display: flex;
