@@ -27,53 +27,83 @@
                 <a class="nav-item nav-link disabled" href="login.html" tabindex="-1" aria-disabled="true">log-out</a>
             </div>
         </div>
-
     </nav>
+
     <div class="container mt-5">
         <div class="row">
-            <!-- Photo Post Card -->
+            <!-- Create Post Card -->
             <div class="col-md-8 mb-4">
                 <div class="card">
-                    <img src="../webapp/img/b4.jpg" class="card-img-top" alt="Photo">
                     <div class="card-body">
-                        <h5 class="card-title">Photo Post</h5>
-                        <p class="card-text">Dont forget we having SRC elections soon 13 October 2023.Choose wisely
-                            #Brics #vacation</p>
+                        <h5 class="card-title">Create Post</h5>
+                        <form id="postForm">
+                            <div class="form-group">
+                                <textarea class="form-control" id="postContent" rows="3"
+                                    placeholder="Enter your post content"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Post</button>
+                        </form>
                     </div>
-                    <ul class="list-group list-group-flush comments-section">
-                        <li class="list-group-item">John Doe: Awesome shot! </li>
-                        <li class="list-group-item">Jane Smith: I wish I was there.</li>
-                    </ul>
-                    <div class="card-body comments-section">
-                        <a href="#" class="card-link"><i class="far fa-thumbs-up"></i> Like</a><span
-                            class="badge badge-light">2</span>
-                        <a href="#" class="card-link"><i class="far fa-comment"></i> Comment</a> <span
-                            class="badge badge-light">1</span>
-                    </div>
-
                 </div>
             </div>
 
-            <!-- Text Post Card -->
-            <div class="col-md-8 mb-4">
+            <!-- Trending Container (on the far right) -->
+            <div class="col-md-4">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Text Post</h5>
-                        <p class="card-text">We are count 5 days till we have our seminar Blockchain</p>
+                        <h5 class="card-title">What's Trending</h5>
+                        <ul class="list-group">
+                            <li class="list-group-item">Trending Topic 1</li>
+                            <li class="list-group-item">Trending Topic 2</li>
+                            <li class="list-group-item">Trending Topic 3</li>
+                        </ul>
                     </div>
-                    <ul class="list-group list-group-flush comments-section">
-                        <li class="list-group-item">Sara Johnson: I Cant wait!</li>
-                        <li class="list-group-item">Mike Brown: Thanks for the recommendation. </li>
-                    </ul>
-                    <div class="card-body comments-section">
-                        <a href="#" class="card-link"><i class="far fa-thumbs-up"></i> Like</a><span
-                            class="badge badge-light">1</span>
-                        <a href="#" class="card-link"><i class="far fa-comment"></i> Comment</a> <span
-                            class="badge badge-light">3</span>
-                    </div>
-                    <!-- Comments Section -->
-
                 </div>
+            </div>
+        </div>
+
+        <!-- Photo Post Card -->
+        <div class="col-md-8 mb-4">
+            <div class="card">
+                <img src="../webapp/img/b4.jpg" class="card-img-top" alt="Photo">
+                <div class="card-body">
+                    <h5 class="card-title">Photo Post</h5>
+                    <p class="card-text">Dont forget we having SRC elections soon 13 October 2023.Choose wisely
+                        #Brics #vacation</p>
+                </div>
+                <ul class="list-group list-group-flush comments-section">
+                    <li class="list-group-item">John Doe: Awesome shot! </li>
+                    <li class="list-group-item">Jane Smith: I wish I was there.</li>
+                </ul>
+                <div class="card-body comments-section">
+                    <a href="#" class="card-link"><i class="far fa-thumbs-up"></i> Like</a><span
+                        class="badge badge-light">2</span>
+                    <a href="#" class="card-link"><i class="far fa-comment"></i> Comment</a> <span
+                        class="badge badge-light">1</span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Text Post Card -->
+        <div class="col-md-8 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Text Post</h5>
+                    <p class="card-text">We are count 5 days till we have our seminar Blockchain</p>
+                </div>
+                <ul class="list-group list-group-flush comments-section">
+                    <li class="list-group-item">Sara Johnson: I Cant wait!</li>
+                    <li class="list-group-item">Mike Brown: Thanks for the recommendation. </li>
+                </ul>
+                <div class="card-body comments-section">
+                    <a href="#" class="card-link"><i class="far fa-thumbs-up"></i> Like</a><span
+                        class="badge badge-light">1</span>
+                    <a href="#" class="card-link"><i class="far fa-comment"></i> Comment</a> <span
+                        class="badge badge-light">3</span>
+                </div>
+                <!-- Comments Section -->
+
             </div>
         </div>
     </div>
@@ -83,7 +113,20 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script>
+        // Add event listener to the form submission
+        document.getElementById('postForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent form from submitting
 
+            // Get the post content from the textarea
+            const postContent = document.getElementById('postContent').value;
+
+            // You can process and submit the postContent to your backend or display it on the page as you need
+
+            // Optionally, clear the form after submission
+            document.getElementById('postContent').value = '';
+        });
+    </script>
 </body>
 
 </html>
