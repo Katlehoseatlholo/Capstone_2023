@@ -23,9 +23,8 @@
                 <li>By accepting, you agree to abide by the rules of this election.</li>
             </ul>
             <img src="./img/q.jpg" class="img-fluid rounded-circle" width="150"" alt="Voting Conditions">
-            <button id="acceptConditions" class="btn btn-primary btn-lg">Accept Conditions</button>
-            <button id="declineConditions" class="btn btn-danger btn-lg">Decline Conditions</button>
-        
+            <button id="acceptConditions" class="btn btn-primary btn-lg"> VOTE</button>
+            
         </div>
 
         <!-- Voting Buttons -->
@@ -50,6 +49,7 @@
     </script>
 
     <script>
+        
         const YourContractABI = [
             {
                 "constant": true,
@@ -93,12 +93,12 @@
         // OR
 
         // For ethers.js
-        const { ethers } = require('ethers');
-        const provider = new ethers.providers.JsonRpcProvider('<YourRPCURL>');
+        //const { ethers } = require('ethers');
+       // const provider = new ethers.providers.JsonRpcProvider('<YourRPCURL>');
 
-        const contractAbi = YourContractABI;
-        const contractAddress = YourContractAddress;
-        const contract = new ethers.Contract(contractAddress, contractAbi, provider);
+       // const contractAbi = YourContractABI;
+       // const contractAddress = YourContractAddress;
+       // const contract = new ethers.Contract(contractAddress, contractAbi, provider);
     </script>
 
     <!-- Bootstrap Scripts -->
