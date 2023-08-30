@@ -20,7 +20,8 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link active" href="index.html">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link active" href="index.html">Home <span
+                            class="sr-only">(current)</span></a>
                     <a class="nav-item nav-link" href="profile.html">Profile</a>
                     <a class="nav-item nav-link" href="feed.html">Feed</a>
                     <a class="nav-item nav-link" href="VIewBallots.html">ViewBallots</a>
@@ -29,7 +30,7 @@
                 </div>
             </div>
         </nav>
-    
+
         <h1 class="text-center">Smart Contract Interaction</h1>
 
         <!-- Information Section -->
@@ -41,9 +42,9 @@
                 <li>Your vote is irreversible once submitted.</li>
                 <li>By accepting, you agree to abide by the rules of this election.</li>
             </ul>
-            <img src="./img/q.jpg" class="img-fluid rounded-circle" width="150"" alt="Voting Conditions">
+            <img src="./img/q.jpg" class="img-fluid rounded-circle" width="150"" alt=" Voting Conditions">
             <button id="acceptConditions" class="btn btn-primary btn-lg"> VOTE</button>
-            
+
         </div>
 
         <!-- Voting Buttons -->
@@ -53,77 +54,17 @@
         </div>
     </div>
 
-    <script>
-        // Example: Accept the contract
-        document.getElementById('acceptConditions').addEventListener('click', () => {
-            // Hide the information section
-            document.querySelector('.information').style.display = 'none';
+     <script src="./js/contract.js">
 
-            // Show the voting buttons
-            document.getElementById('acceptButton').style.display = 'inline-block';
-            document.getElementById('declineButton').style.display = 'inline-block';
-        });
+        </script>
+        <script src="./js/contract1.js">
 
-        // Rest of your JavaScript code for contract interaction here...
-    </script>
+        </script>
 
-    <script>
-        
-        const YourContractABI = [
-            {
-                "constant": true,
-                "inputs": [],
-                "name": "getTotalVotes",
-                "outputs": [
-                    {
-                        "name": "",
-                        "type": "uint256"
-                    }
-                ],
-                "payable": false,
-                "stateMutability": "view",
-                "type": "function"
-            },
-            {
-                "constant": false,
-                "inputs": [
-                    {
-                        "name": "candidate",
-                        "type": "string"
-                    }
-                ],
-                "name": "voteForCandidate",
-                "outputs": [],
-                "payable": false,
-                "stateMutability": "nonpayable",
-                "type": "function"
-            }
-        ];
-        const YourContractAddress = "";
-
-        // For Web3.js
-        const Web3 = require('web3');
-        const web3 = new Web3('<YourRPCURL>');
-
-        const contractAbi = YourContractABI;
-        const contractAddress = "0x1234567890abcdef1234567890abcdef12345678";
-        const contract = new web3.eth.Contract(contractAbi, contractAddress);
-
-        // OR
-
-        // For ethers.js
-        //const { ethers } = require('ethers');
-       // const provider = new ethers.providers.JsonRpcProvider('<YourRPCURL>');
-
-       // const contractAbi = YourContractABI;
-       // const contractAddress = YourContractAddress;
-       // const contract = new ethers.Contract(contractAddress, contractAbi, provider);
-    </script>
-
-    <!-- Bootstrap Scripts -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <!-- Bootstrap Scripts -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>
