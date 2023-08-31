@@ -1,14 +1,15 @@
-CREATE TABLE User (
-    UserID INT AUTOINCREMENT PRIMARY KEY,
+CREATE TABLE if not exists Users (
+    UserID INTEGER PRIMARY KEY,
     FirstName VARCHAR(255),
     LastName VARCHAR(255),
     MobileNumber VARCHAR(15),
     AddressLine1 VARCHAR(255),
-    EmailID VARCHAR(255) UNIQUE NOT NULL,
+    EmailID VARCHAR(255) NOT NULL,
     Userpassword VARCHAR(255) NOT NULL,
     Education VARCHAR(255),
     VoteCount INT 
 );
-INSERT INTO User (FirstName, LastName, MobileNumber, AddressLine1, EmailID, Userpassword, Education, VoteCount)
-VALUES ('Daniel', 'Donye', '7366878933', '123 Pluto Street', 'tint@example.com', '123password', 'Bachelor of Commerce', 0);
+
+INSERT INTO Users (FirstName, LastName, MobileNumber, AddressLine1, EmailID, Userpassword, Education, VoteCount)
+VALUES ('Adam', 'Admin', '7336453783', '4th Ave Street', 'admin@gmail.com', '1234', 'Bachelor of Governance', 0);
 
