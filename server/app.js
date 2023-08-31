@@ -1,7 +1,7 @@
-import express, { urlencoded, json } from 'express';
-import * as sqlite from "sqlite";
-import sqlite3 from "sqlite3";
-import session from 'express-session';
+const express = require('express');
+const sqlite3 = require('sqlite3');
+const session = require('express-session');
+const db = new sqlite3.Database('database.db');
 
 const app = express();
 
@@ -12,16 +12,8 @@ app.use(session({
   saveUninitialized: true
 }));
 
-const db = await sqlite.open({
-  filename: "./101.db",
-  driver: sqlite3.Database,
-});
-
-await db.migrate();
-
-/////////////////// 
-app.use(urlencoded({ extended: true }));
-app.use(json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 app.get('/', (req, res) => {
   res.send('Welcome to your website');

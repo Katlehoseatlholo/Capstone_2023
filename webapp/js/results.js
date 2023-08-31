@@ -3,7 +3,7 @@
         const data1 = {
             labels: ['Project A', 'Project B', 'Project C'],
             datasets: [{
-                data: [222, 122, 99], // Example vote counts
+                data: [122,222, 99], // Example vote counts
                 backgroundColor: ['#FFGFJ3', '#4566GF', '#33JJ43'], // Example colors
             }]
         };
