@@ -10,44 +10,45 @@ document.addEventListener("alpine:init", () => {
 
       // Define methods for interacting with the server
       register() {
-        fetch("/register", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            username: this.username,
+        axios
+          .post('/register', {
+            emailID: this.username,
             password: this.password,
-          }),
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            this.message = data.message;
+          })
+          .then((response) => {
+            this.message = response.data.message;
+          })
+          .catch((error) => {
+            console.error(error);
+            this.message = 'Registration failed';
           });
       },
-
+    
       login() {
-        fetch("/login", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            username: this.username,
+        axios
+          .post('/login', {
+            emailID: this.username,
             password: this.password,
-          }),
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            this.message = data.message;
+          })
+          .then((response) => {
+            console.log(response);
+            this.message = response.data.message;
+          })
+          .catch((error) => {
+            console.error(error);
+            this.message = 'Login failed';
           });
       },
-
+    
       logout() {
-        fetch("/logout")
-          .then((response) => response.json())
-          .then((data) => {
-            this.message = data.message;
+        axios
+          .get('/logout')
+          .then((response) => {
+            this.message = response.data.message;
+          })
+          .catch((error) => {
+            console.error(error);
+            this.message = 'Logout failed';
           });
       },
     };

@@ -6,11 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <!-- Include Alpine.js script -->
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.js" defer></script>
+    <script src="//unpkg.com/alpinejs" defer></script>
     <!-- Include your Alpine.js component script -->
     
     <!-- Include your custom CSS -->
     <link rel="stylesheet" href="./css/login.css">
+    
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -38,7 +40,7 @@
                 <h2>LOGIN</h2>
                 <input type="text" x-model="username" placeholder="Email">
                 <input type="password" x-model="password" placeholder="Password">
-                <button @click="login">Login</button>
+                <a href="profile.html"><button @click="login">Login</button></a>
                 <a href="forgotpassword.html">Forgot password?</a>
                 <p x-text="message"></p>
             </div>
@@ -47,13 +49,13 @@
                 <input type="text" x-model="username" placeholder="Email">
                 <input type="password" x-model="password" placeholder="Password">
                 <input type="password" placeholder="Confirm Password">
-                <button @click="register">Register</button>
+                <a href="OnboardingScreen.html"><button @click="register">Register</button></a>
             </div>
         </div>
     </div>
     <script src="./js/login.js"> </script>
-   <script src=""></script>
-    <script src="./js/LoginAlpine.js" defer></script>
+  
+    <script src="./js/LoginAlpine.js" ></script>
     
 </body>
 
