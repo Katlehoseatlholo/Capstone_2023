@@ -4,14 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Include Alpine.js script -->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.js" defer></script>
+    <!-- Include your Alpine.js component script -->
+    <script src="./js/login.js"></script>
+    <!-- Include your custom CSS -->
+    <link rel="stylesheet" href="./css/login.css">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <title>Document</title>
-    <link rel="stylesheet" href="./css/login.css">
+ 
 </head>
 
-<body>
+<body x-data="Login">
     <div class="login-reg-panel">
         <div class="login-info-box">
             <h2>Have an account?</h2>
@@ -30,24 +36,24 @@
         <div class="white-panel">
             <div class="login-show">
                 <h2>LOGIN</h2>
-                <input type="text" placeholder="Email">
-                <input type="password" placeholder="Password">
-                <a href="feed.html"><input type="button" value="Login"></a>
+                <input type="text" x-model="username" placeholder="Email">
+                <input type="password" x-model="password" placeholder="Password">
+                <button @click="login">Login</button>
                 <a href="forgotpassword.html">Forgot password?</a>
+                <p x-text="message"></p>
             </div>
             <div class="register-show">
                 <h2>REGISTER</h2>
-                <input type="text" placeholder="Email">
-                <input type="password" placeholder="Password">
+                <input type="text" x-model="username" placeholder="Email">
+                <input type="password" x-model="password" placeholder="Password">
                 <input type="password" placeholder="Confirm Password">
-                <a href="OnboardingScreen.html"> <input type="button" value="Register"></a>
+                <button @click="register">Register</button>
             </div>
         </div>
     </div>
     <script src="./js/login.js">
         
     </script>
-
 </body>
 
 </html>

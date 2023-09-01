@@ -22,18 +22,16 @@ await db.migrate();
 /////////////////// 
 app.use(urlencoded({ extended: true }));
 app.use(json());
+app.use(express.static('public'))
 
-app.get('/', (req, res) => {
-  res.send('Welcome to your website');
-});
 
-// Add your user management and authentication routes here
+
 // Registration route
 app.post('/register', (req, res) => {
     const { username, password } = req.body;
   
     // Insert user data into the database (ensure proper validation and hashing)
-    db.run('INSERT INTO users (username, password) VALUES (?, ?)', [username, password], (err) => {
+    db.run('INSERT INTO Users (username, password) VALUES (?, ?)', [username, password], (err) => {
       if (err) {
         return res.status(500).json({ error: 'Registration failed' });
       }
@@ -46,7 +44,7 @@ app.post('/register', (req, res) => {
     const { username, password } = req.body;
   
     // Check user credentials against the database (ensure proper validation and hashing)
-    db.get('SELECT * FROM users WHERE username = ? AND password = ?', [username, password], (err, user) => {
+    db.get('SELECT * FROM Users WHERE username = ? AND password = ?', [username, password], (err, user) => {
       if (err) {
         return res.status(500).json({ error: 'Login failed' });
       }
