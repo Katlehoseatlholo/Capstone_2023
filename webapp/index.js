@@ -71,6 +71,48 @@ app.post('/register', (req, res) => {
   });
 
   
+
+// Fetch user details by email ID
+app.get('/user/:emailID', async (req, res) => {
+  const { emailID } = req.params;
+
+  try {
+    const user = await db.get('SELECT * FROM Users WHERE EmailID = ?', [emailID]);
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    res.json(user);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Error fetching user details' });
+  }
+});
+
+// Update user details
+app.put('/user/:emailID', async (req, res) => {
+  const { emailID } = req.params;
+  const updatedUser = req.body;
+
+  try {
+    // Update the user's details in the database
+    await db.run('UPDATE Users SET FirstName = ?, LastName = ?, MobileNumber = ?, AddressLine1 = ?, Education = ? WHERE EmailID = ?', [
+      updatedUser.FirstName,
+      updatedUser.LastName,
+      updatedUser.MobileNumber,
+      updatedUser.AddressLine1,
+      updatedUser.Education,
+      emailID,
+    ]);
+
+    res.json({ message: 'Profile updated successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Error updating user profile' });
+  }
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

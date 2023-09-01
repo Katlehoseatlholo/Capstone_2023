@@ -7,6 +7,8 @@ document.addEventListener("alpine:init", () => {
       username: "",
       password: "",
       message: "",
+      loggedInUser: null, // To store the logged-in user's information
+
 
       // Define methods for interacting with the server
       register() {
@@ -22,6 +24,10 @@ document.addEventListener("alpine:init", () => {
             console.error(error);
             this.message = 'Registration failed';
           });
+
+           // After a successful registration, you can update the loggedInUser property
+    this.loggedInUser = { emailID: this.username, /* other user details */ };
+ 
       },
     
       login() {
@@ -33,6 +39,10 @@ document.addEventListener("alpine:init", () => {
           .then((response) => {
             console.log(response);
             this.message = response.data.message;
+            if (response.data.message === 'Login successful') {
+              // Set the loggedInUser when login is successful
+              this.loggedInUser = { emailID: this.username, /* other user details */ };
+            }
           })
           .catch((error) => {
             console.error(error);
@@ -41,6 +51,8 @@ document.addEventListener("alpine:init", () => {
       },
     
       logout() {
+        this.loggedInUser = null;
+
         axios
           .get('/logout')
           .then((response) => {
