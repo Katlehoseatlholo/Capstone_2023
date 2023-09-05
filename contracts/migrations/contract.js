@@ -1,4 +1,4 @@
-var Vote = artifacts.require("./MyContract.sol");
+var Vote = artifacts.require("./Contract.sol");
 
 export default function(deployer) {
   // Use deployer to state migration tasks.
