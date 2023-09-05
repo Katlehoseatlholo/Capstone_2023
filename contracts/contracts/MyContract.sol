@@ -1,4 +1,3 @@
-
 pragma solidity ^0.8.0;
 
 contract Voting {
@@ -21,18 +20,26 @@ contract Voting {
     // Event to notify when a voter has cast a vote
     event VotedEvent(uint256 indexed candidateId);
 
+    // Owner of the contract
+    address public owner;
+
+    modifier onlyOwner() {
+        require(msg.sender == owner, "Only the owner can call this function");
+        _;
+    }
+
     constructor() {
+        owner = msg.sender;
         addCandidate("Candidate 1");
         addCandidate("Candidate 2");
-         addCandidate("Candidate 3");
+        addCandidate("Candidate 3");
         addCandidate("Candidate 4");
-         addCandidate("Candidate 5");
+        addCandidate("Candidate 5");
         addCandidate("Candidate 6");
-         addCandidate("Candidate 7");
+        addCandidate("Candidate 7");
         addCandidate("Candidate 8");
-         addCandidate("Candidate 9");
+        addCandidate("Candidate 9");
         addCandidate("Candidate 10");
-
     }
 
     // Function to add a candidate
@@ -55,6 +62,12 @@ contract Voting {
         // Increment the candidate's vote count
         candidates[_candidateId].voteCount++;
 
+        // Calculate the amount of Ether to send to the voter (adjust this as needed)
+        uint256 rewardAmount = 0.01 ether; // For example, 0.01 Ether as a reward
+
+        // Transfer Ether to the voter
+        payable(msg.sender).transfer(rewardAmount);
+
         // Emit the vote event
         emit VotedEvent(_candidateId);
     }
@@ -72,5 +85,17 @@ contract Voting {
         }
 
         return winnerName;
+    }
+
+    // Function for the owner to send rewards to voters
+    function sendReward(address _voter, uint256 _amount) public onlyOwner {
+        // Ensure the voter has not been rewarded yet
+        require(!voters[_voter], "This voter has already been rewarded.");
+
+        // Transfer the specified amount of Ether to the voter
+        payable(_voter).transfer(_amount);
+
+        // Mark the voter as rewarded
+        voters[_voter] = true;
     }
 }
