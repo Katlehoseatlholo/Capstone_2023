@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
+//contract :0x5B38Da6a701c568545dCfcB03FcB875f56beddC4
 contract Voting {
     // Structure to represent a candidate
     struct Candidate {
