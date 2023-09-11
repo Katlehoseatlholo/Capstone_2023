@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voting Admin Page</title>
+    <!-- Add Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+        <!-- Navbar content -->
+        <a class="navbar-brand" href="#">e-Vote</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="index.html">Home <span
+                        class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" href="profile.html">Profile</a>
+                <a class="nav-item nav-link" href="feed.html">Feed</a>
+                <a class="nav-item nav-link" href="VIewBallots.html">ViewBallots</a>
+                <a class="nav-item nav-link" href="ViewResults.html">Results</a>
+                <a class="nav-item nav-link " href="login.html" tabindex="-1" aria-disabled="true">log-out</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h1 class="mb-4">Create a New Voting Election</h1>
+        <form id="votingForm">
+            <div class="form-group">
+                <label for="candidateNames">Candidate Names (comma-separated):</label>
+                <input type="text" class="form-control" id="candidateNames" required>
+            </div>
+
+            <div class="form-group">
+                <label for="rewardAmount">Reward Amount (in Ether):</label>
+                <input type="number" class="form-control" id="rewardAmount" step="0.01" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Create Election</button>
+        </form>
+
+        <p id="statusMessage" class="mt-4"></p>
+    </div>
+
+    <!-- Add Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Your JavaScript code here -->
+    <script>
+        const votingForm = document.getElementById('votingForm');
+        const statusMessage = document.getElementById('statusMessage');
+
+        votingForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const candidateNames = document.getElementById('candidateNames').value.split(',');
+            const rewardAmount = web3.utils.toWei(document.getElementById('rewardAmount').value, 'ether');
+
+            try {
+                // Deploy the contract with candidate names and reward amount
+                const contract = await web3.eth.contract(abi).new(candidateNames, rewardAmount, {
+                    from: web3.eth.accounts[0],
+                    data: bytecode,
+                    gas: 4000000 // adjust gas limit as needed
+                });
+
+                // Display success message
+                statusMessage.innerHTML = `Election created successfully.<br>Contract Address: ${contract.address}`;
+            } catch (error) {
+                // Display error message
+                statusMessage.innerHTML = `Error: ${error.message}`;
+            }
+        });
+    </script>
+</body>
+</html>

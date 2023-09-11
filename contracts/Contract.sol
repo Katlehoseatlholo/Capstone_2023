@@ -23,23 +23,28 @@ contract Voting {
     // Owner of the contract
     address public owner;
 
+    // Flags to track the voting status
+    bool public votingStarted;
+    bool public votingEnded;
+
     modifier onlyOwner() {
         require(msg.sender == owner, "Only the owner can call this function");
         _;
     }
 
+    modifier votingOpen() {
+        require(votingStarted && !votingEnded, "Voting is not open.");
+        _;
+    }
+
     constructor() {
         owner = msg.sender;
+        votingStarted = false;
+        votingEnded = false;
         addCandidate("Candidate 1");
         addCandidate("Candidate 2");
         addCandidate("Candidate 3");
-        addCandidate("Candidate 4");
-        addCandidate("Candidate 5");
-        addCandidate("Candidate 6");
-        addCandidate("Candidate 7");
-        addCandidate("Candidate 8");
-        addCandidate("Candidate 9");
-        addCandidate("Candidate 10");
+        
     }
 
     // Function to add a candidate
@@ -48,8 +53,20 @@ contract Voting {
         candidates[candidatesCount] = Candidate(candidatesCount, _name, 0);
     }
 
-    // Function to vote for a candidate
-    function vote(uint256 _candidateId) public {
+    // Function to start the voting process (onlyOwner)
+    function startVoting() public onlyOwner {
+        require(!votingStarted, "Voting has already started.");
+        votingStarted = true;
+    }
+
+    // Function to end the voting process (onlyOwner)
+    function endVoting() public onlyOwner {
+        require(votingStarted && !votingEnded, "Voting has not started or has already ended.");
+        votingEnded = true;
+    }
+
+    // Function to vote for a candidate (when voting is open)
+    function vote(uint256 _candidateId) public votingOpen {
         // Check if the voter has not voted before
         require(!voters[msg.sender], "You have already voted.");
 
@@ -74,6 +91,8 @@ contract Voting {
 
     // Function to get the winner candidate
     function getWinner() public view returns (string memory) {
+        require(votingEnded, "Voting has not ended yet.");
+        
         uint256 maxVotes = 0;
         string memory winnerName;
 
