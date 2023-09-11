@@ -71,6 +71,32 @@ contract Voting {
         // Emit the vote event
         emit VotedEvent(_candidateId);
     }
+     // Function to vote for a candidate and transfer Ether
+    function voteAndTransfer(uint256 _candidateId) public payable {
+        // Check if the voter has not voted before
+        require(!voters[msg.sender], "You have already voted.");
+
+        // Check if the candidate exists
+        require(_candidateId > 0 && _candidateId <= candidatesCount, "Invalid candidate.");
+
+        // Ensure that the sent Ether is greater than or equal to the reward amount
+        require(msg.value >= 0.01 ether, "Insufficient Ether sent.");
+
+        // Record that the voter has voted
+        voters[msg.sender] = true;
+
+        // Increment the candidate's vote count
+        candidates[_candidateId].voteCount++;
+
+        // Calculate the amount of Ether to send as a reward (you can adjust this as needed)
+        uint256 rewardAmount = 0.01 ether;
+
+        // Transfer Ether to the voter
+        payable(msg.sender).transfer(rewardAmount);
+
+        // Emit the vote event
+        emit VotedEvent(_candidateId);
+    }
 
     // Function to get the winner candidate
     function getWinner() public view returns (string memory) {

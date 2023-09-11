@@ -25,7 +25,8 @@
   "contributors": [],
   "scripts": {
     "start": " node index.js",
-    "test": ""
+    "dev": "lite-server",
+    "contracts": "merge-dirs ./build/contracts ./web"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -38,6 +39,7 @@
     "sqlite": "^5.0.1",
     "sqlite3": "^5.1.6",
     "truffle": "^5.11.3",
+    "truffle-hdwallet-provider": "^1.0.17",
     "web3": "^4.1.1"
   }
 }
