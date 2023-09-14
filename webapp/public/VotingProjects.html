@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Page</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Candidates for Voting</h1>
+
+        <!-- Bootstrap Carousel -->
+        <div id="candidateCarousel" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+
+                <!-- Candidate Card 1 --><a href="Contract.html">
+                <div class="carousel-item active">
+                    <div class="card">
+                        <img src="./img/b4.jpg" class="card-img-top" alt="Candidate 1 Image">
+                        <div class="card-body">
+                            <h5 class="card-title">Candidate 1</h5>
+                            <p class="card-text">Description of Candidate 1.</p>
+                            <button class="btn btn-primary">Vote</button>
+                        </div>
+                    </div>
+                </div>
+            </a>
+                <!-- Candidate Card 2 -->
+                <div class="carousel-item">
+                    <div class="card">
+                        <img src="./img/b1.jpg" class="card-img-top" alt="Candidate 2 Image">
+                        <div class="card-body">
+                            <h5 class="card-title">Candidate 2</h5>
+                            <p class="card-text">Description of Candidate 2.</p>
+                            <button class="btn btn-primary">Vote</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add more candidate cards here -->
+
+            </div>
+
+            <!-- Carousel Controls -->
+            <a class="carousel-control-prev" href="#candidateCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#candidateCarousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+
+    </div>
+
+    <!-- Include Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

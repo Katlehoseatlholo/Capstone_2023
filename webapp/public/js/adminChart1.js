@@ -15,5 +15,5 @@
         };
 
         // Create and render the bar chart
-        const ctx1 = document.getElementById('chart1').getContext('3d');
+        const ctx1 = document.getElementById('chart1').getContext('2d');
         new Chart(ctx1, config1);

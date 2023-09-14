@@ -3,81 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Voting Admin Page</title>
-    <!-- Add Bootstrap CSS -->
+    <title>Smart Contract Interaction</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.6.0/web3.min.js"></script>
+    <!-- Include Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-        <!-- Navbar content -->
-        <a class="navbar-brand" href="#">e-Vote</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="index.html">Home <span
-                        class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link" href="profile.html">Profile</a>
-                <a class="nav-item nav-link" href="feed.html">Feed</a>
-                <a class="nav-item nav-link" href="VIewBallots.html">ViewBallots</a>
-                <a class="nav-item nav-link" href="ViewResults.html">Results</a>
-                <a class="nav-item nav-link " href="login.html" tabindex="-1" aria-disabled="true">log-out</a>
-            </div>
-        </div>
-    </nav>
-
     <div class="container mt-5">
-        <h1 class="mb-4">Create a New Voting Election</h1>
-        <form id="votingForm">
-            <div class="form-group">
-                <label for="candidateNames">Candidate Names (comma-separated):</label>
-                <input type="text" class="form-control" id="candidateNames" required>
-            </div>
+        <h1 class="mb-4">Smart Contract Interaction</h1>
 
-            <div class="form-group">
-                <label for="rewardAmount">Reward Amount (in Ether):</label>
-                <input type="number" class="form-control" id="rewardAmount" step="0.01" required>
-            </div>
+        <!-- Input field to set the voting start time -->
+        <div class="form-group">
+            <label for="startTime">Voting Start Time (Unix Timestamp):</label>
+            <input type="text" class="form-control" id="startTime" placeholder="Enter start time">
+            <button class="btn btn-primary mt-2" onclick="setVotingStartTime()">Set Start Time</button>
+        </div>
 
-            <button type="submit" class="btn btn-primary">Create Election</button>
-        </form>
+        <!-- Input field to set the voting end time -->
+        <div class="form-group">
+            <label for="endTime">Voting End Time (Unix Timestamp):</label>
+            <input type="text" class="form-control" id="endTime" placeholder="Enter end time">
+            <button class="btn btn-primary mt-2" onclick="setVotingEndTime()">Set End Time</button>
+        </div>
 
-        <p id="statusMessage" class="mt-4"></p>
+        <!-- Input field to add a new candidate -->
+        <div class="form-group">
+            <label for="newCandidate">New Candidate Name:</label>
+            <input type="text" class="form-control" id="newCandidate" placeholder="Enter candidate name">
+            <button class="btn btn-primary mt-2" onclick="addCandidate()">Add Candidate</button>
+        </div>
+
+        <!-- Input field to send rewards to a voter -->
+        <div class="form-group">
+            <label for="voterAddress">Voter Address:</label>
+            <input type="text" class="form-control" id="voterAddress" placeholder="Enter voter's address">
+            <label for="rewardAmount">Reward Amount (in Ether):</label>
+            <input type="text" class="form-control" id="rewardAmount" placeholder="Enter reward amount">
+            <button class="btn btn-primary mt-2" onclick="sendReward()">Send Reward</button>
+        </div>
+
+        <!-- Button to check the winner -->
+        <button class="btn btn-success" onclick="getWinner()">Get Winner</button>
     </div>
 
-    <!-- Add Bootstrap JS and jQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <!-- Include Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <!-- Your JavaScript code here -->
-    <script>
-        const votingForm = document.getElementById('votingForm');
-        const statusMessage = document.getElementById('statusMessage');
-
-        votingForm.addEventListener('submit', async (event) => {
-            event.preventDefault();
-
-            const candidateNames = document.getElementById('candidateNames').value.split(',');
-            const rewardAmount = web3.utils.toWei(document.getElementById('rewardAmount').value, 'ether');
-
-            try {
-                // Deploy the contract with candidate names and reward amount
-                const contract = await web3.eth.contract(abi).new(candidateNames, rewardAmount, {
-                    from: web3.eth.accounts[0],
-                    data: bytecode,
-                    gas: 4000000 // adjust gas limit as needed
-                });
-
-                // Display success message
-                statusMessage.innerHTML = `Election created successfully.<br>Contract Address: ${contract.address}`;
-            } catch (error) {
-                // Display error message
-                statusMessage.innerHTML = `Error: ${error.message}`;
-            }
-        });
-    </script>
+    <script src="./js/admincreate.js"></script>
 </body>
 </html>
