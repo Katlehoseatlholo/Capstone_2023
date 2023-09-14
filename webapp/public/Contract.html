@@ -10,61 +10,79 @@
 </head>
 
 <body>
-    <div class="container mt-5">
-        <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-            <!-- Navbar content -->
-            <a class="navbar-brand" href="#">e-Vote</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    <a class="nav-item nav-link active" href="index.html">Home <span
-                            class="sr-only">(current)</span></a>
-                    <a class="nav-item nav-link" href="profile.html">Profile</a>
-                    <a class="nav-item nav-link" href="feed.html">Feed</a>
-                    <a class="nav-item nav-link" href="VIewBallots.html">ViewBallots</a>
-                    <a class="nav-item nav-link" href="ViewResults.html">Results</a>
-                    <a class="nav-item nav-link " href="login.html" tabindex="-1" aria-disabled="true">log-out</a>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
+                <div class="position-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="index.html">
+                                Home
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="profile.html">
+                                Profile
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="feed.html">
+                                Feed
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="VIewBallots.html">
+                                View Ballots
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="ViewResults.html">
+                                Results
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="login.html">
+                                Log Out
+                            </a>
+                        </li>
+                    </ul>
                 </div>
-            </div>
-        </nav>
+            </nav>
 
-        <h1 class="text-center">Smart Contract Interaction</h1>
+            <!-- Main Content -->
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <h1 class="text-center">Smart Contract Interaction</h1>
 
-        <!-- Information Section -->
-        <div class="jumbotron information">
-            <h2 class="display-4">Conditions Before Voting</h2>
-            <p class="lead">Before proceeding to vote, please read and accept the following conditions:</p>
-            <ul>
-                <li>Only one vote is allowed per person.</li>
-                <li>Your vote is irreversible once submitted.</li>
-                <li>By accepting, you agree to abide by the rules of this election.</li>
-            </ul>
-            <img src="./img/q.jpg" class="img-fluid rounded-circle" width="150"" alt=" Voting Conditions">
-            <button id="acceptConditions" class="btn btn-primary btn-lg"> VOTE</button>
+                <!-- Information Section -->
+                <div class="jumbotron information">
+                    <h2 class="display-4">Conditions Before Voting</h2>
+                    <p class="lead">Before proceeding to vote, please read and accept the following conditions:</p>
+                    <ul>
+                        <li>Only one vote is allowed per person.</li>
+                        <li>Your vote is irreversible once submitted.</li>
+                        <li>By accepting, you agree to abide by the rules of this election.</li>
+                    </ul>
+                    <img src="./img/q.jpg" class="img-fluid rounded-circle" width="150" alt="Voting Conditions">
+                    <button id="acceptConditions" class="btn btn-primary btn-lg">VOTE</button>
+                </div>
 
-        </div>
-
-        <!-- Voting Buttons -->
-        <div class="text-center">
-            <button id="acceptButton" class="btn btn-success" style="display: none;">Accept</button>
-            <button id="declineButton" class="btn btn-danger" style="display: none;">Decline</button>
+                <!-- Voting Buttons -->
+                <div class="text-center">
+                    <button id="acceptButton" class="btn btn-success" style="display: none;">Accept</button>
+                    <button id="declineButton" class="btn btn-danger" style="display: none;">Decline</button>
+                </div>
+            </main>
         </div>
     </div>
 
-     <script src="./js/contract.js">
+    <script src="./js/contract.js"></script>
+    <script src="./js/contract1.js"></script>
 
-        </script>
-        <script src="./js/contract1.js">
-
-        </script>
-
-        <!-- Bootstrap Scripts -->
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Bootstrap Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>
