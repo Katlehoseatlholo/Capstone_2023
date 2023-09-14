@@ -5,15 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="//unpkg.com/alpinejs" defer></script>
     <link rel="stylesheet" href="./css/profile.css">
 </head>
 
-<body x-data="Profile" x-init="fetchUserDetails('frank@mail.za')">
+<body x-data="Login" x-init="fetchUserDetails">
     <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
         <!-- Navbar content -->
         <a class="navbar-brand" href="#">e-Vote</a>
@@ -97,6 +97,9 @@
                                         class="form-control" x-model="updatedUser.VoteCount"></div>
 
                             </div>
+                            <div class="getEMial">
+                                <button type="button" @click="fetchUserDetails">EMIAL</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -109,9 +112,10 @@
     <script src="//unpkg.com/alpinejs" defer></script>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"
         id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="./js/profileAlpine.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <script src="./js/LoginAlpine.js"></script>
 </body>
 
 </html>
