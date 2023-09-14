@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Page</title>
+    <title>Smart Contract Interaction</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.6.0/web3.min.js"></script>
     <!-- Include Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.6.0/web3.min.js"></script>
 </head>
 
 <body>
@@ -24,7 +24,6 @@
             </ul>
         </div>
     </nav>
-
     <div class="container-fluid mt-3">
         <div class="row">
             <!-- Sidebar -->
@@ -65,41 +64,49 @@
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 
                 <div class="container mt-5">
-                    <h1 class="mb-4">Project Management Voting Admin Page</h1>
+                    <!-- Rest of your content here -->
+                    <h1 class="mt-4">User Table</h1>
 
-                    <!-- Input field to set contract owner address -->
-                    <div class="form-group">
-                        <label for="ownerAddress">Contract Owner Address:</label>
-                        <input type="text" class="form-control" id="ownerAddress" placeholder="Enter owner address">
-                    </div>
-
-                    <!-- Button to deploy the smart contract -->
-                    <button class="btn btn-primary mb-3" onclick="deployContract()">Deploy Contract</button>
-
-                    <!-- Input field to set the voting start time -->
-                    <div class="form-group">
-                        <label for="startTime">Voting Start Time (Unix Timestamp):</label>
-                        <input type="text" class="form-control" id="startTime" placeholder="Enter start time">
-                    </div>
-                    <button class="btn btn-success mb-3" onclick="setVotingStartTime()">Start Voting</button>
-
-                    <!-- Input field to set the voting end time -->
-                    <div class="form-group">
-                        <label for="endTime">Voting End Time (Unix Timestamp):</label>
-                        <input type="text" class="form-control" id="endTime" placeholder="Enter end time">
-                    </div>
-                    <button class="btn btn-danger mb-3" onclick="setVotingEndTime()">End Voting</button>
-
-                    <!-- Input field to add a new project -->
-                    <div class="form-group">
-                        <label for="newProject">New Project Name:</label>
-                        <input type="text" class="form-control" id="newProject" placeholder="Enter project name">
-                    </div>
-                    <button class="btn btn-primary mb-3" onclick="addProject()">Add Project</button>
-
-                    <!-- Input field to check the winner -->
-                    <button class="btn btn-info" onclick="getWinner()">Get Winner</button>
+                    <table class="table table-bordered mt-4">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>User ID</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Mobile Number</th>
+                                <th>Address</th>
+                                <th>Email ID</th>
+                                <th>Education</th>
+                                <th>Vote Count</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- You would typically use a server-side language to generate this part with data from your database -->
+                            <tr>
+                                <td>1</td>
+                                <td>John</td>
+                                <td>Doe</td>
+                                <td>123-456-7890</td>
+                                <td>123 Main St</td>
+                                <td>johndoe@example.com</td>
+                                <td>PhD</td>
+                                <td>5</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Jane</td>
+                                <td>Smith</td>
+                                <td>987-654-3210</td>
+                                <td>456 Elm St</td>
+                                <td>janesmith@example.com</td>
+                                <td>Master's</td>
+                                <td>3</td>
+                            </tr>
+                            <!-- Add more rows for additional users -->
+                        </tbody>
+                    </table>
                 </div>
+
             </main>
         </div>
     </div>
