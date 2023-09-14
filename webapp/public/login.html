@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,19 +9,18 @@
     <!-- Include Alpine.js script -->
     <script src="//unpkg.com/alpinejs" defer></script>
     <!-- Include your Alpine.js component script -->
-    
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.0/dist/cdn.min.js"></script>
     <!-- Include your custom CSS -->
     <link rel="stylesheet" href="./css/login.css">
-    
-	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
- 
+
+    <!-- Include Bootstrap CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+
 </head>
 
 <body x-data="Login">
     <div class="login-reg-panel">
+        <!-- Your login/registration form content -->
         <div class="login-info-box">
             <h2>Have an account?</h2>
             <p>Enter valid credentials</p>
@@ -40,7 +40,7 @@
                 <h2>LOGIN</h2>
                 <input type="text" x-model="username" placeholder="Email">
                 <input type="password" x-model="password" placeholder="Password">
-                <a href="profile.html"><button @click="login">Login</button></a>
+               <button type="button "@click="login">Login</button>
                 <a href="forgotpassword.html">Forgot password?</a>
                 <p x-text="message"></p>
             </div>
@@ -53,10 +53,17 @@
             </div>
         </div>
     </div>
-    <script src="./js/login.js"> </script>
-  
-    <script src="./js/LoginAlpine.js" ></script>
-    
+
+    <!-- Include jQuery first, then Bootstrap JavaScript -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <!-- Include Axios library -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <!-- Include your custom JavaScript files -->
+    <script src="./js/LoginAlpine.js"></script>
+    <script src="./js/login.js"></script>
 </body>
 
 </html>
