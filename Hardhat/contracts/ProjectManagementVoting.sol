@@ -33,9 +33,9 @@ contract ProjectManagementVoting {
         owner = payable(msg.sender); // Convert msg.sender to an address payable
         votingStarted = false;
         votingEnded = false;
-        addProject("Project 1");
-        addProject("Project 2");
-        addProject("Project 3");
+        addProject("Brics AWS");
+        addProject("Project Zuma");
+        addProject("Zero Loadshedding");
     }
 
     function addProject(string memory _name) private {

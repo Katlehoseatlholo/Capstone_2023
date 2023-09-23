@@ -57,6 +57,38 @@ const startServer = async () => {
       res.status(500).json({ error: "Registration failed" });
     }
   });
+  // Feed Post Function
+app.post("/feed", async function (req, res) {
+  const { text, image } = req.body;
+
+  try {
+      let stmt;
+      let result;
+
+      if (text && image) {
+          // Text and Image Post
+          stmt = db.prepare("INSERT INTO Feed (PostText, photo, DatePosted) VALUES (?, ?, ?)");
+          result = await stmt.run(text, image, new Date().toISOString());
+      } else if (text) {
+          // Text Post
+          stmt = db.prepare("INSERT INTO Feed (PostText, DatePosted) VALUES (?, ?)");
+          result = await stmt.run(text, new Date().toISOString());
+      } else {
+          return res.status(400).json({ message: "Invalid request. Please provide text and/or image." });
+      }
+
+      stmt.finalize();
+
+      if (result) {
+          res.status(201).json({ message: "Post sent successfully" });
+      } else {
+          res.status(400).json({ message: "Failed to send post" });
+      }
+  } catch (error) {
+      console.error("Oops, we ran into this error: " + error);
+      res.status(500).json({ error: "Internal Server Error" });
+  }
+});
 
   // Login route
   app.post("/login", async (req, res) => {
@@ -120,6 +152,17 @@ const startServer = async () => {
     }
   });
 
+  //route to get User Posts
+
+  app.get("/posts",  async function (req, res) {
+    try {
+      const feedPosts = await db.get("SELECT * FROM Feed WHERE EmailID = ?");
+      
+    } catch (error) {
+      console.error("Opps we ran into this : " + error);
+      res.send.json({ error: "Error fetching feed details" })
+    }
+  });
   // Update user details
   app.put("/user/:emailID", async (req, res) => {
     const { emailID } = req.params;

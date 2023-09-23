@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-contract Voting {
+contract JBSLecturers {
     struct Candidate {
         uint256 id;
         string name;
@@ -10,30 +10,33 @@ contract Voting {
 
     // Mapping to track voters and their voting status
     mapping(address => bool) public voters;
-    
+
     // Mapping to store information about candidates
     mapping(uint256 => Candidate) public candidates;
-    
+
     // Total number of candidates
     uint256 public candidatesCount;
-    
+
     // Address of the contract owner
     address public owner;
-    
+
     // Flags to indicate the status of the voting process
     bool public votingStarted;
     bool public votingEnded;
-    
+
     // Timestamps for the start and end of the voting process
     uint256 public votingStartTime;
     uint256 public votingEndTime;
 
+    // Voting time in minutes
+    uint256 public votingDuration;
+
     // Event to log when a voter casts a vote
     event VotedEvent(uint256 indexed candidateId);
-    
+
     // Event to log when the voting process starts
     event VotingStartedEvent(uint256 startTime);
-    
+
     // Event to log when the voting process ends
     event VotingEndedEvent(uint256 endTime);
 
@@ -50,13 +53,14 @@ contract Voting {
     }
 
     // Constructor initializes the contract
-    constructor() {
+    constructor(uint256 _votingDurationMinutes) {
         owner = msg.sender;
         votingStarted = false;
         votingEnded = false;
-        addCandidate("Candidate 1");
-        addCandidate("Candidate 2");
-        addCandidate("Candidate 3");
+        votingDuration = _votingDurationMinutes * 1 minutes;
+        addCandidate("Andre Vermeulen");
+        addCandidate("Dr Uche");
+        addCandidate("Dr Akinola");
     }
 
     // Function to add a candidate (private function)
@@ -76,6 +80,7 @@ contract Voting {
     // Function to end the voting process (onlyOwner)
     function endVoting() public onlyOwner {
         require(votingStarted && !votingEnded, "Voting has not started or has already ended.");
+        require(block.timestamp >= votingStartTime + votingDuration, "Voting duration not over yet.");
         votingEnded = true;
         votingEndTime = block.timestamp; // Record the end time
         emit VotingEndedEvent(votingEndTime);
@@ -89,15 +94,13 @@ contract Voting {
         voters[msg.sender] = true;
         candidates[_candidateId].voteCount++;
 
-        uint256 rewardAmount = 0.1 ether; // Adjust this as needed
-        payable(msg.sender).transfer(rewardAmount);
         emit VotedEvent(_candidateId);
     }
 
     // Function to determine the winner after the voting process ends
     function getWinner() public view returns (string memory) {
         require(votingEnded, "Voting has not ended yet.");
-        
+
         uint256 maxVotes = 0;
         string memory winnerName;
 
@@ -111,10 +114,16 @@ contract Voting {
         return winnerName;
     }
 
-    // Function for the owner to send rewards to voters
-    function sendReward(address _voter, uint256 _amount) public onlyOwner {
-        require(!voters[_voter], "This voter has already been rewarded.");
-        payable(_voter).transfer(_amount);
-        voters[_voter] = true;
+    // Function for the owner to send rewards to voters of the winning candidate
+    function sendReward(address[] memory _voters, uint256 _amount) public onlyOwner {
+        require(votingEnded, "Voting has not ended yet.");
+        require(bytes(getWinner()).length > 0, "No winner yet.");
+
+        for (uint256 i = 0; i < _voters.length; i++) {
+            address voter = _voters[i];
+            require(voters[voter], "Not a valid voter.");
+            voters[voter] = false; // Mark voter as rewarded
+            payable(voter).transfer(_amount);
+        }
     }
 }
