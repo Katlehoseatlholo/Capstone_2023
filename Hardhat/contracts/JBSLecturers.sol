@@ -61,6 +61,8 @@ contract JBSLecturers {
         addCandidate("Andre Vermeulen");
         addCandidate("Dr Uche");
         addCandidate("Dr Akinola");
+          addCandidate(" Munien Inderasan");
+        
     }
 
     // Function to add a candidate (private function)
