@@ -1,3 +1,4 @@
+import Web3 from 'web3';
 // Define a shared scope to store loggedInUser
 let loggedInUser = JSON.parse(sessionStorage.getItem("loggedInUser")) || {};
 
@@ -9,6 +10,12 @@ document.addEventListener("alpine:init", () => {
       username: "",
       password: "",
       message: "",
+      // Define variables for interacting with the contract
+      contract: null, // Store the contract instance here
+      candidates: [], // Store candidate data here
+      selectedCandidate: 0, // Store the selected candidate ID here
+      voted: false, // Track whether the user has voted
+
       loggedInUser: loggedInUser, // Access the shared loggedInUser here
       updatedUser: {
         Name: "",
@@ -21,12 +28,6 @@ document.addEventListener("alpine:init", () => {
         Experience: "",
         AdditionalDetails: "",
       },
-
-      // Define variables for interacting with the contract
-      contract: null, // Store the contract instance here
-      candidates: [], // Store candidate data here
-      selectedCandidate: 0, // Store the selected candidate ID here
-      voted: false, // Track whether the user has voted
 
       async initContract() {
         // Initialize Web3.js
