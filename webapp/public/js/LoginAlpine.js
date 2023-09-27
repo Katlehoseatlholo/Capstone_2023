@@ -1,4 +1,4 @@
-import Web3 from 'web3';
+//import Web3 from 'web3';
 // Define a shared scope to store loggedInUser
 let loggedInUser = JSON.parse(sessionStorage.getItem("loggedInUser")) || {};
 
@@ -29,18 +29,7 @@ document.addEventListener("alpine:init", () => {
         AdditionalDetails: "",
       },
 
-      async initContract() {
-        // Initialize Web3.js
-        const web3 = new Web3(window.ethereum);
-        try {
-          await window.ethereum.enable(); // Request user permission
-          const contractAddress = "YOUR_CONTRACT_ADDRESS"; // Replace with your contract address
-          const contractAbi = YourContractABI; // Replace with your contract ABI
-          this.contract = new web3.eth.Contract(contractAbi, contractAddress);
-        } catch (error) {
-          console.error("Error initializing contract:", error);
-        }
-      },
+      
 
       async loadCandidates() {
         // Load candidate data from the contract
@@ -187,10 +176,6 @@ document.addEventListener("alpine:init", () => {
         }
       },
 
-      init() {
-        this.initContract();
-        this.loadCandidates();
-      },
     };
   });
 });

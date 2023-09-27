@@ -1,20 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles.css">
-
-    <!-- Include Alpine.js script -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="//unpkg.com/alpinejs" defer></script>
-    <!-- Include your Alpine.js component script -->
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.0/dist/cdn.min.js"></script>
     <title>Smart Contract Interaction</title>
 </head>
-
-<body>
+<body x-data="Login" >
     <div class="container-fluid">
         <div class="row">
             <!-- Sidebar -->
@@ -73,8 +67,7 @@
                 </div>
 
                 <!-- Voting Buttons -->
-                <!-- Voting Buttons -->
-                <div class="text-center" x-data="login">
+                <div class="text-center">
                     <div x-show="!voted">
                         <select x-model="selectedCandidate">
                             <template x-for="candidate in candidates" :key="candidate.id">
@@ -87,20 +80,25 @@
                         <p>You have already voted.</p>
                     </div>
                 </div>
-
             </main>
         </div>
     </div>
 
-    <script src="./js/contract.js"></script>
+    <!-- Include Alpine.js script -->
+<script src="//unpkg.com/alpinejs" defer></script>
+
     <!-- Include Axios library -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <!-- Include your custom JavaScript files -->
-    <script src="./js/LoginAlpine.js"></script>
-    <!-- Bootstrap Scripts -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
+    
+    <!-- Include jQuery first, then Bootstrap JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
+    <!-- Include your custom JavaScript files -->
+    <script type="module" src="./js/contract.js"></script>
+    <script   src="./js/LoginAlpine.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.3.6/web3.min.js"></script>
+
+</body>
 </html>

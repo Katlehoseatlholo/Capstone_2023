@@ -1,6 +1,6 @@
 
 // For Web3.js
-import Web3 from 'web3';
+//import Web3 from 'web3';
 
 // Initialize Web3.js
 
@@ -229,11 +229,11 @@ const YourContractABI = [
     }
 ];
 
-const web3 = new Web3('https://mainnet.infura.io/v3/62e9b757837c4d52ab8816ca61d5f725');
+//const web3 = new Web3('https://mainnet.infura.io/v3/62e9b757837c4d52ab8816ca61d5f725');
 
-const contractAbi = YourContractABI;
-const contractAddress = "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4";
-const contract = new web3.eth.Contract(contractAbi, contractAddress);
+//const contractAbi = YourContractABI;
+//const contractAddress = "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4";
+//const contract = new web3.eth.Contract(contractAbi, contractAddress);
 
 // OR
 
@@ -264,9 +264,6 @@ async function initWeb3() {
         return false;
     }
 }
-
-;
-
 // Function to cast a vote
 async function vote(candidateId) {
     const accounts = await web3.eth.getAccounts();
