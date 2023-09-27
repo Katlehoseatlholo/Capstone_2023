@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles.css">
+
+    <!-- Include Alpine.js script -->
+    <script src="//unpkg.com/alpinejs" defer></script>
+    <!-- Include your Alpine.js component script -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.0/dist/cdn.min.js"></script>
     <title>Smart Contract Interaction</title>
 </head>
 
@@ -68,17 +73,32 @@
                 </div>
 
                 <!-- Voting Buttons -->
-                <div class="text-center">
-                    <button id="acceptButton" class="btn btn-success" style="display: none;">Accept</button>
-                    <button id="declineButton" class="btn btn-danger" style="display: none;">Decline</button>
+                <!-- Voting Buttons -->
+                <div class="text-center" x-data="login">
+                    <div x-show="!voted">
+                        <select x-model="selectedCandidate">
+                            <template x-for="candidate in candidates" :key="candidate.id">
+                                <option :value="candidate.id" x-text="candidate.name"></option>
+                            </template>
+                        </select>
+                        <button @click="vote()" class="btn btn-success">Vote</button>
+                    </div>
+                    <div x-show="voted">
+                        <p>You have already voted.</p>
+                    </div>
                 </div>
+
             </main>
         </div>
     </div>
 
     <script src="./js/contract.js"></script>
     <script src="./js/contract1.js"></script>
+    <!-- Include Axios library -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
+    <!-- Include your custom JavaScript files -->
+    <script src="./js/LoginAlpine.js"></script>
     <!-- Bootstrap Scripts -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>

@@ -1,3 +1,9 @@
+
+// For Web3.js
+import Web3 from 'web3';
+
+// Initialize Web3.js
+
 const YourContractABI = [
     {
         "compiler": {
@@ -223,8 +229,6 @@ const YourContractABI = [
     }
 ];
 
-// For Web3.js
-import Web3 from 'web3';
 const web3 = new Web3('https://mainnet.infura.io/v3/62e9b757837c4d52ab8816ca61d5f725');
 
 const contractAbi = YourContractABI;
@@ -233,6 +237,7 @@ const contract = new web3.eth.Contract(contractAbi, contractAddress);
 
 // OR
 
+
 // For ethers.js
 //const { ethers } = require('ethers');
 // const provider = new ethers.providers.JsonRpcProvider('<YourRPCURL>');
@@ -240,3 +245,61 @@ const contract = new web3.eth.Contract(contractAbi, contractAddress);
 // const contractAbi = YourContractABI;
 // const contractAddress = YourContractAddress;
 // const contract = new ethers.Contract(contractAddress, contractAbi, provider);
+
+// Import Web3.js library
+
+
+async function initWeb3() {
+    if (typeof window.ethereum !== 'undefined') {
+        web3 = new Web3(window.ethereum);
+        try {
+            await window.ethereum.enable(); // Request user permission
+            return true;
+        } catch (error) {
+            console.error("User denied access to wallet");
+            return false;
+        }
+    } else {
+        console.error("MetaMask not detected");
+        return false;
+    }
+}
+
+;
+
+// Function to cast a vote
+async function vote(candidateId) {
+    const accounts = await web3.eth.getAccounts();
+
+    try {
+        await contract.methods.vote(candidateId).send({ from: accounts[0] });
+        alert("Vote cast successfully");
+    } catch (error) {
+        console.error("Error casting vote:", error);
+    }
+}
+
+// Event listener for the "VOTE" button
+document.getElementById("acceptConditions").addEventListener("click", async () => {
+    const web3Initialized = await initWeb3();
+    if (web3Initialized) {
+        // Show the accept and decline buttons
+        document.getElementById("acceptButton").style.display = "block";
+        document.getElementById("declineButton").style.display = "block";
+
+        // Hide the "VOTE" button
+        document.getElementById("acceptConditions").style.display = "none";
+    }
+});
+
+// Event listener for the "Accept" button
+document.getElementById("acceptButton").addEventListener("click", () => {
+    // Replace the argument with the candidate ID you want to vote for
+    const candidateId = 1; // Example: Voting for candidate with ID 1
+    vote(candidateId);
+});
+
+// Event listener for the "Decline" button
+document.getElementById("declineButton").addEventListener("click", () => {
+    // Handle user declining the vote
+});

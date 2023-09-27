@@ -9,7 +9,7 @@ document.addEventListener("alpine:init", () => {
       username: "",
       password: "",
       message: "",
-     loggedInUser: loggedInUser, // Access the shared loggedInUser here
+      loggedInUser: loggedInUser, // Access the shared loggedInUser here
       updatedUser: {
         Name: "",
         Surname: "",
@@ -22,6 +22,56 @@ document.addEventListener("alpine:init", () => {
         AdditionalDetails: "",
       },
 
+      // Define variables for interacting with the contract
+      contract: null, // Store the contract instance here
+      candidates: [], // Store candidate data here
+      selectedCandidate: 0, // Store the selected candidate ID here
+      voted: false, // Track whether the user has voted
+
+      async initContract() {
+        // Initialize Web3.js
+        const web3 = new Web3(window.ethereum);
+        try {
+          await window.ethereum.enable(); // Request user permission
+          const contractAddress = "YOUR_CONTRACT_ADDRESS"; // Replace with your contract address
+          const contractAbi = YourContractABI; // Replace with your contract ABI
+          this.contract = new web3.eth.Contract(contractAbi, contractAddress);
+        } catch (error) {
+          console.error("Error initializing contract:", error);
+        }
+      },
+
+      async loadCandidates() {
+        // Load candidate data from the contract
+        try {
+          const candidatesCount = await this.contract.methods
+            .candidatesCount()
+            .call();
+          this.candidates = [];
+          for (let i = 1; i <= candidatesCount; i++) {
+            const candidate = await this.contract.methods.candidates(i).call();
+            this.candidates.push(candidate);
+          }
+        } catch (error) {
+          console.error("Error loading candidates:", error);
+        }
+      },
+
+      async vote() {
+        if (!this.voted) {
+          try {
+            await this.contract.methods
+              .vote(this.selectedCandidate)
+              .send({ from: window.ethereum.selectedAddress });
+            this.voted = true;
+            console.log("Vote cast successfully");
+            // Reload candidate data after voting
+            this.loadCandidates();
+          } catch (error) {
+            console.error("Error casting vote:", error);
+          }
+        }
+      },
 
       async register() {
         try {
@@ -67,9 +117,9 @@ document.addEventListener("alpine:init", () => {
                 "loggedInUser",
                 JSON.stringify(this.loggedInUser)
               );
-                 console.log(this.loggedInUser.emailID)
+              console.log(this.loggedInUser.emailID);
               // Redirect regular users to the profile page
-             window.location.href = "http://localhost:3000/profile.html"; // Change the URL to your profile page
+              window.location.href = "http://localhost:3000/profile.html"; // Change the URL to your profile page
             }
           } else if (response.status === 401) {
             this.message = "Invalid credentials"; // Handle invalid credentials
@@ -97,7 +147,9 @@ document.addEventListener("alpine:init", () => {
           // Check if loggedInUser and EmailID exist before making the request
           if (this.loggedInUser && this.loggedInUser.emailID) {
             // Use the correct endpoint for fetching user details
-            const response = await axios.get(`/user/${this.loggedInUser.emailID}`);
+            const response = await axios.get(
+              `/user/${this.loggedInUser.emailID}`
+            );
 
             // Debug log: Check if user details are fetched
             console.log("Fetched User Details:", response.data);
@@ -113,7 +165,10 @@ document.addEventListener("alpine:init", () => {
       async saveProfile() {
         try {
           // Use the correct endpoint for updating user details
-          await axios.put(`/user/${this.updatedUser.EmailID}`, this.updatedUser);
+          await axios.put(
+            `/user/${this.updatedUser.EmailID}`,
+            this.updatedUser
+          );
           alert("Profile updated successfully");
         } catch (error) {
           console.error(error);
@@ -131,8 +186,10 @@ document.addEventListener("alpine:init", () => {
         }
       },
 
+      init() {
+        this.initContract();
+        this.loadCandidates();
+      },
     };
   });
-
-
 });
