@@ -6,4 +6,4 @@ To run the application:
 
 Once everything is installed properly, you can run 
 
-Nodemon index.js (root folder)
+Nodemon index.js (webapp folder)
